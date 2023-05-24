@@ -3,9 +3,9 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
 
 async function createSchema() {
-  const loadedTypes = await loadFiles(`${__dirname}/schema/**/*.typeDef.ts`);
+  const loadedTypes = await loadFiles(`${__dirname}/schema/**/*.typeDefs.ts`);
   const loadedResolvers = await loadFiles(
-    `${__dirname}/schema/**/*.{queries, mutations}.ts`
+    `${__dirname}/schema/**/*.{queries,mutations}.ts`
   );
 
   const typeDefs = mergeTypeDefs(loadedTypes);
