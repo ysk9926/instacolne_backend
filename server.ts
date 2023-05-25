@@ -9,13 +9,10 @@ async function startApolloServer() {
     schema,
   });
   const PORT = process.env.PORT;
-  const test = process.env.SECRET_KEY;
 
   server
     .listen(PORT)
-    .then(() =>
-      console.log(`Server is running on http://localhost:${PORT}/ ${test}`)
-    );
+    .then(() => console.log(`Server is running on http://localhost:${PORT}/ `));
 }
 
 startApolloServer();
