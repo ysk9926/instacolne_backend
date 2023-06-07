@@ -4,4 +4,9 @@ export interface IAccount {
   userName: string;
   email: string;
   password: string;
+  token: string;
+}
+
+export interface IJwt {
+  id: number;
 }

@@ -1,21 +1,32 @@
 import client from "../../../client";
 import bcrypt from "bcrypt";
-import { IAccount } from "../User.interface";
-import { error } from "console";
+import { IAccount, IJwt } from "../User.interface";
+import jwt from "jsonwebtoken";
 
 export default {
   Mutation: {
     editProfile: async (
       _: any,
-      { firstName, lastName, userName, email, password: newPassword }: IAccount
+      {
+        firstName,
+        lastName,
+        userName,
+        email,
+        password: newPassword,
+        token,
+      }: IAccount
     ) => {
+      const { id } = (await jwt.verify(
+        token,
+        String(process.env.SECRET_KEY)
+      )) as IJwt;
       let uglyPassword = null;
       if (newPassword) {
         uglyPassword = await bcrypt.hash(newPassword, 10);
       }
       const updateUser = await client.user.update({
         where: {
-          id: 1,
+          id,
         },
         data: {
           firstName,
