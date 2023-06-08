@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node server.ts",
+    "st1": "nodemon --exec ts-node server.ts",
     "migrate": "npx prisma migrate dev",
-    "studio": "npx prisma studio"
+    "st2": "npx prisma studio"
   },
   "keywords": [],
   "author": "",
