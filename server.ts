@@ -1,7 +1,7 @@
 require("dotenv").config();
 import { ApolloServer } from "apollo-server";
 import createSchema from "./schema";
-import { getUser } from "./schema/User/User.Utils";
+import { getUser, protectResolver } from "./schema/User/User.Utils";
 
 async function startApolloServer() {
   const schema = await createSchema();

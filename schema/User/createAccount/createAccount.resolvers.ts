@@ -5,7 +5,7 @@ import { IAccount } from "../User.interface";
 export default {
   Mutation: {
     createAccount: async (
-      _: any,
+      _: unknown,
       { firstName, lastName, userName, email, password }: IAccount
     ) => {
       try {
