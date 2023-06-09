@@ -6,6 +6,7 @@ export interface IAccount {
   password: string;
   token: string;
   bio: string;
+  avatar: string;
 }
 
 export interface IJwt {

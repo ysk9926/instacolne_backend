@@ -14,11 +14,12 @@ export default {
           userName,
           email,
           bio,
+          avatar,
           password: newPassword,
         }: IAccount,
         { loggedInUser }: IContext
       ) => {
-        console.log(loggedInUser);
+        console.log(avatar);
         let uglyPassword = null;
         if (newPassword) {
           uglyPassword = await bcrypt.hash(newPassword, 10);
