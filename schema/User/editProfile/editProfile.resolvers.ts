@@ -13,6 +13,7 @@ export default {
           lastName,
           userName,
           email,
+          bio,
           password: newPassword,
         }: IAccount,
         { loggedInUser }: IContext
@@ -31,6 +32,7 @@ export default {
             lastName,
             userName,
             email,
+            bio,
             ...(uglyPassword && { password: uglyPassword }),
           },
         });

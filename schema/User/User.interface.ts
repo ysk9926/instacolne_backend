@@ -5,6 +5,7 @@ export interface IAccount {
   email: string;
   password: string;
   token: string;
+  bio: string;
 }
 
 export interface IJwt {
@@ -25,10 +26,16 @@ export interface IUser {
   userName: string;
   email: string;
   password: string;
+  bio: string;
   createdAt: any;
   updatedAt: any;
 }
 
 export interface IContext {
   loggedInUser: IUser | null;
+}
+
+export interface IError {
+  ok: boolean;
+  error: string;
 }

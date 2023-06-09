@@ -13,6 +13,7 @@ export default gql`
       email: String
       password: String
       token: String
+      bio: String
     ): editProfileResult
   }
 `;
