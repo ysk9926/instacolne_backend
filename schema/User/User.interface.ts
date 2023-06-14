@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export interface IAccount {
   firstName: string;
   lastName: string;
@@ -7,6 +9,12 @@ export interface IAccount {
   token: string;
   bio: string;
   avatar: string;
+  follower: {
+    User: User;
+  };
+  following: {
+    User: User;
+  };
 }
 
 export interface IJwt {

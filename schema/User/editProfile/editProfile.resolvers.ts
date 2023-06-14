@@ -19,11 +19,11 @@ export default {
         }: IAccount,
         { loggedInUser }: IContext
       ) => {
-        console.log(avatar);
         let uglyPassword = null;
         if (newPassword) {
           uglyPassword = await bcrypt.hash(newPassword, 10);
         }
+
         const updateUser = await client.user.update({
           where: {
             id: loggedInUser?.id,
@@ -34,6 +34,7 @@ export default {
             userName,
             email,
             bio,
+            avatar,
             ...(uglyPassword && { password: uglyPassword }),
           },
         });

@@ -35,8 +35,10 @@ export default {
             password: uglyPassword,
           },
         });
-      } catch (e) {
-        return e;
+      } catch {
+        return {
+          ok: true,
+        };
       }
     },
   },
