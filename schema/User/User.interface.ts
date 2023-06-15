@@ -15,6 +15,7 @@ export interface IAccount {
   following: {
     User: User;
   };
+  page: number;
 }
 
 export interface IJwt {
