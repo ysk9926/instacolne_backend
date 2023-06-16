@@ -3,7 +3,7 @@ import { IAccount } from "../User.interface";
 
 export default {
   Query: {
-    seeFollowing: async (_: unknown, { userName, cursor }: IAccount) => {
+    seeFollowers: async (_: unknown, { userName, page }: IAccount) => {
       const ok = await client.user.findUnique({
         where: { userName },
         select: { id: true },
@@ -14,19 +14,22 @@ export default {
           error: "찾는 유저가 존재하지 않습니다",
         };
       }
-      const following = await client.user
+      const follower = await client.user
         .findUnique({
           where: { userName },
         })
-        .following({
+        .follower({
           take: 5,
-          skip: cursor ? 1 : 0,
-          ...(cursor && { cursor: { id: cursor } }),
+          skip: (page - 1) * 5,
         });
-      console.log(following);
+      const totalFollowers = await client.user.count({
+        where: { follower: { some: { userName } } },
+      });
+      console.log(follower);
       return {
         ok: true,
-        following,
+        follower,
+        totalPages: Math.ceil(totalFollowers / 5),
       };
     },
   },

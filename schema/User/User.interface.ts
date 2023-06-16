@@ -1,6 +1,7 @@
 import { User } from "@prisma/client";
 
 export interface IAccount {
+  id: number;
   firstName: string;
   lastName: string;
   userName: string;
@@ -16,6 +17,7 @@ export interface IAccount {
     User: User;
   };
   page: number;
+  cursor: number;
 }
 
 export interface IJwt {
