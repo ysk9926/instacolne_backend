@@ -3,6 +3,7 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { typeDefs, resolvers } from "./schema";
 import { getUser } from "./schema/User/User.Utils";
+import { dynamicImport } from "tsimportlib";
 
 async function startApolloServer() {
   const server = new ApolloServer({
@@ -17,6 +18,13 @@ async function startApolloServer() {
   const PORT = process.env.PORT;
 
   const app = express();
+
+  const graphqlUploadExpressModule = await dynamicImport(
+    "graphql-upload/graphqlUploadExpress.mjs",
+    module
+  );
+  app.use(graphqlUploadExpressModule.default());
+  app.use("/static/", express.static("uploads"));
 
   server.start().then(() => {
     server.applyMiddleware({ app });

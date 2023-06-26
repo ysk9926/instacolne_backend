@@ -5,6 +5,7 @@ import client from "../../client";
 export const getUser = async (token: string) => {
   try {
     if (!token) {
+      console.log("no token");
       return null;
     }
     const { id } = (await jwt.verify(
