@@ -2,6 +2,7 @@ import client from "../../../client";
 import { protectResolver } from "../../User/User.Utils";
 import { IContext } from "../../User/User.interface";
 import { IHashtagobj, IPhoto } from "../photo.interface";
+import { precessHashtags } from "../photoUtil";
 
 export default {
   Query: {
@@ -16,15 +17,7 @@ export default {
         // 2. get/create hashtag
         let hashtagObj: any = [];
         if (caption) {
-          const hashtags = caption.match(/#[\w]+/g);
-          hashtagObj = hashtags?.map((hashtag) => ({
-            where: {
-              hashtag,
-            },
-            create: {
-              hashtag,
-            },
-          }));
+          hashtagObj = precessHashtags(caption);
         }
 
         return client.photo.create({

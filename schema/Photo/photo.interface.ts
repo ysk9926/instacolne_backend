@@ -6,6 +6,7 @@ export interface IPhoto {
   file: string;
   caption: string;
   user: [User];
+  keyWord: string;
 }
 
 export interface IHashtagobj {
