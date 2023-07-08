@@ -2,6 +2,6 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   type Query {
-    uploadPhoto(file: String!, caption: String): Photo
+    seeLike(id: Int!): [User]
   }
 `;

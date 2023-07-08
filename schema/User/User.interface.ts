@@ -44,7 +44,7 @@ export interface IUser {
 }
 
 export interface IContext {
-  loggedInUser: IUser | null;
+  loggedInUser: IUser;
 }
 
 export interface IError {
