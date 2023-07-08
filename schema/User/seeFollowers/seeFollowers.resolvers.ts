@@ -23,7 +23,6 @@ export default {
           skip: cursor ? 1 : 0,
           ...(cursor && { cursor: { id: cursor } }),
         });
-      console.log(following);
       return {
         ok: true,
         following,

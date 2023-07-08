@@ -23,3 +23,10 @@ export interface IHashtag {
   hashtag: string;
   photos: [Photo];
 }
+
+export interface IComment {
+  id: number;
+  photoId: number;
+  payload: string;
+  cursor: number;
+}

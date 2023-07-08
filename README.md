@@ -47,17 +47,27 @@ Apollo Server에서 파일 업로드 기능과 관련하여 발생하는 문제�
 
 ## Photos
 
+- [ ✔ ] Upload Photo (Parse #)
 - [ ✔ ] See Photo
-- [ ] Upload Photo
-- [ ] Edit Photo
-- [ ] Like / Unlike Photo
-- [ ] See Photo Likes
-- [ ] See Feed
-- [ ] Search Photos
-- [ ] See Hashtags
+- [ ✔ ] See Hashtag
+- [ ✔ ] Search Photos
+- [ ✔ ] Edit Photo
+- [ ✔ ] Like / Unlike Photo
+- [ ✔ ] See Photo Likes
+- [ ✔ ] See Feed
+- [ ✔ ] See Photo Comments
+- [ ✔ ] Delete Photo
 
 ## Comments
 
-- [ ] Comment on Photo
-- [ ] Edit Comment
-- [ ] Delete Comment
+- [ ✔ ] Comment on Photo
+- [ ✔ ] Delete Comment
+- [ ✔ ] Edit Comment
+
+## Refactor
+
+- [] Mutation Responses
+
+## Extras
+
+- [ ] S3 Image Upload

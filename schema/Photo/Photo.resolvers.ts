@@ -9,6 +9,8 @@ export default {
     hashtags: ({ id }: IPhoto) =>
       client.hashtag.findMany({ where: { photos: { some: { id } } } }),
     likes: ({ id }: IPhoto) => client.like.count({ where: { photoId: id } }),
+    comments: ({ id }: IPhoto) =>
+      client.comment.count({ where: { photoId: id } }),
   },
   Hashtag: {
     photos: ({ id }: IPhoto, { page }: any, { loggedInUser }: IContext) => {
