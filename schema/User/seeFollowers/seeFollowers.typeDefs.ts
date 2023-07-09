@@ -8,6 +8,6 @@ export default gql`
     error: String
   }
   type Query {
-    seeFollowers(userName: String!, page: Int!): seeFollowersResult!
+    seeFollowers(userName: String!, cursor: Int!): seeFollowersResult!
   }
 `;

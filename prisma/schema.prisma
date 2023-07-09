@@ -19,10 +19,12 @@ model User {
   password  String
   bio       String?
   avatar    String?
-  photos Photo[]
-  likes      Like[]
+  photos    Photo[]
+  likes     Like[]
   comments  Comment[]
-  follower User[] @relation("followRelation")
+  rooms     Room[]
+  messages  Message[]
+  follower  User[] @relation("followRelation")
   following User[] @relation("followRelation")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -70,3 +72,23 @@ model Comment {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
+
+model Room {
+  id        Int       @id @default(autoincrement())
+  users     User[]
+  messages   Message[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  payload   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  room      Room     @relation(fields: [roomId], references: [id])
+  roomId    Int
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+} 

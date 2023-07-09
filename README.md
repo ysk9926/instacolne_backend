@@ -71,3 +71,11 @@ Apollo Server에서 파일 업로드 기능과 관련하여 발생하는 문제�
 ## Extras
 
 - [ ✔ ] S3 Image Upload
+
+## DMs
+
+- [ ✔ ] Create Room
+- [ ✔ ] See Room
+- [ ✔ ] See Rooms
+- [ ✔ ] Send Message
+- [ ] Realtime Messages
