@@ -1,7 +1,8 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-  type Query {
-    uploadPhoto(file: String!, caption: String): Photo!
+  scalar Upload
+  type Mutation {
+    uploadPhoto(file: Upload!, caption: String): Photo!
   }
 `;

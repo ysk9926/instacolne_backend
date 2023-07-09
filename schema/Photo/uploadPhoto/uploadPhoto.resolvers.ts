@@ -1,11 +1,12 @@
 import client from "../../../client";
 import { protectResolver } from "../../User/User.Utils";
 import { IContext } from "../../User/User.interface";
+import { awsPhotoUpload } from "../../shared/shared.util";
 import { IPhoto } from "../photo.interface";
 import { precessHashtags } from "../photoUtil";
 
 export default {
-  Query: {
+  Mutation: {
     uploadPhoto: protectResolver(
       async (
         _: unknown,
@@ -19,10 +20,11 @@ export default {
         if (caption) {
           hashtagObj = precessHashtags(caption);
         }
+        const fileUrl = await awsPhotoUpload(file, loggedInUser.id, "Photos");
 
         return client.photo.create({
           data: {
-            file,
+            file: fileUrl,
             caption,
             user: {
               connect: {

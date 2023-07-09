@@ -36,7 +36,7 @@ type ResolverFunction<T, R> = (
   root: unknown,
   args: T,
   context: IContext,
-  info: unknown
+  info: any
 ) => Promise<R>;
 
 export const protectResolver =
@@ -48,15 +48,19 @@ export const protectResolver =
       root: unknown,
       args: T,
       context: IContext,
-      info: unknown
-    ): Promise<R | IError> => {
+      info: any
+    ): Promise<R | IError> | null => {
       if (!context.loggedInUser) {
-        // promise.resolve()를 사용하여서 이미 선언된 promise객체를 불러와서 사용할수 있다
-        return Promise.resolve({
-          ok: false,
-          error: "로그인후 사용할수 있습니다",
-        });
-      } else {
-        return ourResolver(root, args, context, info);
+        const query = info.operation.operation === "query";
+        if (query) {
+          return null;
+        } else {
+          // promise.resolve()를 사용하여서 이미 선언된 promise객체를 불러와서 사용할수 있다
+          return Promise.resolve({
+            ok: false,
+            error: "로그인후 사용할수 있습니다",
+          });
+        }
       }
+      return ourResolver(root, args, context, info);
     };

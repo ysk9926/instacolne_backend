@@ -24,7 +24,6 @@ async function startApolloServer() {
     module
   );
   app.use(graphqlUploadExpressModule.default());
-  app.use("/static/", express.static("uploads"));
 
   server.start().then(() => {
     server.applyMiddleware({ app });

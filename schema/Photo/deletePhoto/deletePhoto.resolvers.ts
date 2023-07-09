@@ -1,10 +1,12 @@
 import client from "../../../client";
 import { protectResolver } from "../../User/User.Utils";
+import { IContext } from "../../User/User.interface";
+import { awsPhotoDelete } from "../../shared/shared.util";
 import { IPhoto } from "../photo.interface";
 
 export default {
   Mutation: {
-    deleatPhoto: protectResolver(
+    deletePhoto: protectResolver(
       async (_: unknown, { id }: IPhoto, { loggedInUser }) => {
         const photo = await client.photo.findUnique({
           where: {
@@ -12,17 +14,19 @@ export default {
           },
           select: {
             userId: true,
+            file: true,
           },
         });
+        console.log(photo);
         if (!photo) {
           return {
             ok: false,
-            error: "사진이 존재하지 않습니다",
+            error: "Photo not found.",
           };
         } else if (photo.userId !== loggedInUser.id) {
           return {
             ok: false,
-            erroe: "수정 권한이 없습니다",
+            error: "Not authorized.",
           };
         } else {
           await client.photo.delete({
@@ -30,6 +34,7 @@ export default {
               id,
             },
           });
+          await awsPhotoDelete(photo.file, "Photos");
         }
         return {
           ok: true,

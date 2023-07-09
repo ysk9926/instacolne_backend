@@ -5,7 +5,7 @@ import { IComment } from "../photo.interface";
 
 export default {
   Mutation: {
-    deleatComment: protectResolver(
+    deleteComment: protectResolver(
       async (_: unknown, { id }: IComment, { loggedInUser }) => {
         const comment = await client.comment.findUnique({
           where: {

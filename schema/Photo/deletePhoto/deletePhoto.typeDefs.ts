@@ -2,6 +2,6 @@ import { gql } from "apollo-server-express";
 
 export default gql`
   type Mutation {
-    deleatPhoto(id: Int!): mutationResult!
+    deletePhoto(id: Int!): mutationResult!
   }
 `;

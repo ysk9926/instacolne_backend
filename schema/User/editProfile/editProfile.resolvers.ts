@@ -2,7 +2,7 @@ import client from "../../../client";
 import bcrypt from "bcrypt";
 import { IAccount, IContext } from "../User.interface";
 import { protectResolver } from "../User.Utils";
-import { createWriteStream } from "fs";
+import { awsPhotoDelete, awsPhotoUpload } from "../../shared/shared.util";
 
 export default {
   Mutation: {
@@ -22,18 +22,21 @@ export default {
       ) => {
         let avatarUrl = null;
         if (avatar) {
-          const {
-            file: { filename, createReadStream },
-          }: any = await avatar;
-          const newFileName = `${
-            loggedInUser?.userName
-          }-${Date.now()}-${filename}`;
-          const readStream = createReadStream();
-          const writeStream = createWriteStream(
-            process.cwd() + "/uploads/" + newFileName
-          );
-          readStream.pipe(writeStream);
-          avatarUrl = `http://localhost:4000/static/${newFileName}`;
+          avatarUrl = await awsPhotoUpload(avatar, loggedInUser.id, "avatars");
+          awsPhotoDelete(loggedInUser.avatar, "avatars");
+          // const {
+          //   file: { filename, createReadStream },
+          // }: any = await avatar;
+          // const newFileName = `${
+          //   loggedInUser?.userName
+          // }-${Date.now()}-${filename}`;
+          // console.log(`in resolvers ${filename}`);
+          // const readStream = createReadStream();
+          // const writeStream = createWriteStream(
+          //   process.cwd() + "/uploads/" + newFileName
+          // );
+          // readStream.pipe(writeStream);
+          // avatarUrl = `http://localhost:4000/static/${newFileName}`;
         }
         let uglyPassword = null;
         if (newPassword) {

@@ -39,6 +39,7 @@ export interface IUser {
   email: string;
   password: string;
   bio: string;
+  avatar: string;
   createdAt: any;
   updatedAt: any;
 }
