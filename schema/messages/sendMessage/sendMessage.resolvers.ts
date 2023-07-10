@@ -1,4 +1,5 @@
 import client from "../../../client";
+import pubsub from "../../../pubsub";
 import { protectResolver } from "../../User/User.Utils";
 import { IMessage } from "../message.interface";
 
@@ -58,7 +59,7 @@ export default {
             };
           }
         }
-        await client.message.create({
+        const createdMessage = await client.message.create({
           data: {
             payload,
             room: {
@@ -73,6 +74,7 @@ export default {
             },
           },
         });
+        pubsub.publish("MESSAGE_UPDATES", { messageUpdates: createdMessage });
         return {
           ok: true,
         };
