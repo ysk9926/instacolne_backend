@@ -74,7 +74,7 @@ const startServer = async (): Promise<void> => {
   //     `🚀 Server: http://localhost:${process.env.PORT}${apolloserver.graphqlPath}`
   //   )
   // );
-  const PORT = process.env.PORT || 4000;
+  const PORT = 4000;
   httpServer.listen(PORT, () =>
     console.log(
       `🚀 Server: http://localhost:${PORT}${apolloserver.graphqlPath}`

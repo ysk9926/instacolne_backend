@@ -2,7 +2,7 @@
   "name": "instacolne_backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "st1": "nodemon --exec ts-node server.ts",
     "migrate": "npx prisma migrate dev",
