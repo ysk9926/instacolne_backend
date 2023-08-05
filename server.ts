@@ -69,9 +69,15 @@ const startServer = async (): Promise<void> => {
   });
   await apolloserver.start();
   apolloserver.applyMiddleware({ app });
-  httpServer.listen(process.env.PORT, () =>
+  // httpServer.listen(process.env.PORT, () =>
+  //   console.log(
+  //     `🚀 Server: http://localhost:${process.env.PORT}${apolloserver.graphqlPath}`
+  //   )
+  // );
+  const PORT = process.env.PORT || 4000;
+  httpServer.listen(PORT, () =>
     console.log(
-      `🚀 Server: http://localhost:${process.env.PORT}${apolloserver.graphqlPath}`
+      `🚀 Server: http://localhost:${PORT}${apolloserver.graphqlPath}`
     )
   );
 };
