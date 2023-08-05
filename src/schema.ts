@@ -16,8 +16,10 @@ import { mergeResolvers, mergeTypeDefs } from "@graphql-tools/merge";
 
 // export default createSchema;
 
-const loadedTypes = loadFilesSync(`${__dirname}/schema/**/*.typeDefs.ts`);
-const loadedResolvers = loadFilesSync(`${__dirname}/schema/**/*.resolvers.ts`);
+const loadedTypes = loadFilesSync(`${__dirname}/schema/**/*.typeDefs.{js,ts}`);
+const loadedResolvers = loadFilesSync(
+  `${__dirname}/schema/**/*.resolvers.{js,ts}`
+);
 
 export const typeDefs = mergeTypeDefs(loadedTypes);
 export const resolvers = mergeResolvers(loadedResolvers);

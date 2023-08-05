@@ -7,7 +7,8 @@
     "st1": "nodemon --exec ts-node server.ts",
     "migrate": "npx prisma migrate dev",
     "st2": "npx prisma studio",
-    "start": "ts-node server.ts"
+    "build": "npx tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
