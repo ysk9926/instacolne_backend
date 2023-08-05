@@ -8,38 +8,38 @@ export default {
       _: unknown,
       { firstName, lastName, userName, email, password }: IAccount
     ) => {
-      try {
-        //중복 아이디 & 이메일 확인
-        const existingUser = await client.user.findFirst({
-          where: {
-            OR: [
-              {
-                userName,
-              },
-              {
-                email,
-              },
-            ],
-          },
-        });
-        if (existingUser) {
-          throw new Error("이미 가입된 아이디이거나 이메일 입니다");
-        }
-        const uglyPassword = await bcrypt.hash(password, 10);
-        return client.user.create({
-          data: {
-            userName,
-            email,
-            firstName,
-            lastName,
-            password: uglyPassword,
-          },
-        });
-      } catch {
+      const existingUser = await client.user.findFirst({
+        where: {
+          OR: [
+            {
+              userName,
+            },
+            {
+              email,
+            },
+          ],
+        },
+      });
+      if (existingUser) {
+        console.log(existingUser);
         return {
-          ok: true,
+          ok: false,
+          error: "이미 가입된 이메일 이거나 아이디 입니다",
         };
       }
+      const uglyPassword = await bcrypt.hash(password, 10);
+      await client.user.create({
+        data: {
+          userName,
+          email,
+          firstName,
+          lastName,
+          password: uglyPassword,
+        },
+      });
+      return {
+        ok: true,
+      };
     },
   },
 };

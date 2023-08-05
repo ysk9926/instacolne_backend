@@ -3,7 +3,7 @@ import { protectResolver } from "../../User/User.Utils";
 
 export default {
   Query: {
-    seeFeed: protectResolver((par: unknown, arg: unknown, { loggedInUser }) =>
+    seeFeed: protectResolver((_: unknown, __: unknown, { loggedInUser }) =>
       client.photo.findMany({
         where: {
           OR: [

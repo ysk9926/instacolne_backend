@@ -5,10 +5,7 @@ import { execute, subscribe } from "graphql";
 import { createServer } from "http";
 import { getUser } from "./schema/User/User.Utils";
 import { dynamicImport } from "tsimportlib";
-import {
-  ConnectionContext,
-  SubscriptionServer,
-} from "subscriptions-transport-ws";
+import { SubscriptionServer } from "subscriptions-transport-ws";
 import { User } from ".prisma/client";
 import { typeDefs, resolvers } from "./schema";
 import { makeExecutableSchema } from "graphql-tools";
