@@ -9,6 +9,7 @@ import { SubscriptionServer } from "subscriptions-transport-ws";
 import { User } from ".prisma/client";
 import { typeDefs, resolvers } from "./schema";
 import { makeExecutableSchema } from "graphql-tools";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const executableSchema = makeExecutableSchema({
   typeDefs,
@@ -56,6 +57,7 @@ const startServer = async (): Promise<void> => {
       };
     },
     plugins: [
+      ApolloServerPluginLandingPageGraphQLPlayground(),
       {
         async serverWillStart() {
           return {
