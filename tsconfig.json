@@ -5,8 +5,13 @@
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "module": "CommonJS",
-    "target": "es5"
+    "module": "commonjs", // "CommonJS"에서 "commonjs"로 수정
+    "target": "es5",
+    "baseUrl": "./",
+    "paths": {
+      "@prisma/client": ["node_modules/@prisma/client"]
+      // 다른 경로들도 필요한 경우 추가해주세요.
+    }
   },
   "include": ["./src/**/*"]
 }
