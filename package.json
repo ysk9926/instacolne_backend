@@ -9,7 +9,7 @@
     "st2": "npx prisma studio",
     "prebuild": "npx prisma migrate dev && npx prisma migrate deploy",
     "build": "npx tsc",
-    "start": "node dist/server.js"
+    "start": "node /app/dist/server.js"
   },
   "keywords": [],
   "author": "",
