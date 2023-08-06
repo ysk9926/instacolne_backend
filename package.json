@@ -7,7 +7,7 @@
     "st1": "nodemon --exec ts-node server.ts",
     "migrate": "npx prisma migrate dev",
     "st2": "npx prisma studio",
-    "prebuild": "npm run migrate",
+    "prebuild": "npx prisma migrate dev && npx prisma migrate deploy",
     "build": "npx tsc",
     "start": "node dist/server.js"
   },
